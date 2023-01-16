@@ -46,7 +46,9 @@ record HasDesc {ℓ} (A : Indexed P I ℓ) : Setω where
     constr (split y) ≡⟨ constr∘split y       ⟩
     y                ∎ where open ≡-Reasoning
 
-  -- TODO: ≡ω-Reasoning
   constr-injective : ∀ {pi} {x y : ⟦ D ⟧Data A′ pi} → constr x ≡ constr y → x ≡ω y
-  constr-injective {x = x} {y} cx≡cy =
-    transω (symω (split∘constr x)) (transω (cong≡ω split cx≡cy) (split∘constr y))
+  constr-injective {x = x} {y} cx≡cy = begin
+    x                ≡ω˘⟨ split∘constr x     ⟩
+    split (constr x) ≡ω⟨  cong≡ω split cx≡cy ⟩
+    split (constr y) ≡ω⟨  split∘constr y     ⟩
+    y                ∎ where open ≡ω-Reasoning

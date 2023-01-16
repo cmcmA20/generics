@@ -235,7 +235,6 @@ _ω,ω_ = _,_
 data _≡ω_ {A : Setω} (x : A) : A → Setω where
   refl : x ≡ω x
 
-
 congω : ∀ {A b} {B : Set b} (f : ∀ x → B)
       → ∀ {x y : A} → x ≡ω y → f x ≡ f y
 congω f refl = refl
@@ -257,7 +256,31 @@ transω refl refl = refl
 
 symω : {A : Setω} {x y : A} → x ≡ω y → y ≡ω x
 symω refl = refl
-    
+
+module ≡ω-Reasoning {A : Setω} where
+
+  infix  3 _∎
+  infixr 2 _≡ω⟨⟩_ step-≡ω step-≡ω˘
+  infix  1 begin_
+
+  begin_ : ∀{x y : A} → x ≡ω y → x ≡ω y
+  begin_ x≡y = x≡y
+
+  _≡ω⟨⟩_ : ∀ (x {y} : A) → x ≡ω y → x ≡ω y
+  _ ≡ω⟨⟩ x≡y = x≡y
+
+  step-≡ω : ∀ (x {y z} : A) → y ≡ω z → x ≡ω y → x ≡ω z
+  step-≡ω _ y≡z x≡y = transω x≡y y≡z
+
+  step-≡ω˘ : ∀ (x {y z} : A) → y ≡ω z → y ≡ω x → x ≡ω z
+  step-≡ω˘ _ y≡z y≡x = transω (symω y≡x) y≡z
+
+  _∎ : ∀ (x : A) → x ≡ω x
+  _∎ _ = refl
+
+  syntax step-≡ω  x y≡z x≡y = x ≡ω⟨  x≡y ⟩ y≡z
+  syntax step-≡ω˘ x y≡z y≡x = x ≡ω˘⟨ y≡x ⟩ y≡z
+
 instance
   ×ω-inst : ∀ {A B} → ⦃ A ⦄ → ⦃ B ⦄ → A ×ω B
   ×ω-inst ⦃ x ⦄ ⦃ y ⦄ = x , y

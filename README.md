@@ -1,10 +1,10 @@
 A library for datatype-generic programming in Agda.
 To learn more about the structure of the library, see `README.agda`.
 
-- Tested with Agda 2.6.2.2.20230105
-- And Agda's [standard-library] 90c2debd6
+- Tested with Agda 2.6.3
+- And Agda's [standard-library] f24cea458
 
-[standard-library]: https://github.com/agda/agda-stdlib
+[standard-library]: https://github.com/cmcmA20/agda-stdlib
 
 ## Goal
 
