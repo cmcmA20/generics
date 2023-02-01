@@ -15,8 +15,7 @@ open import Data.These hiding (alignWith)
 
 open String hiding (show)
 
-
-record Show {l} (A : Set l) : Set l where field show : A → String
+open import KL.Show public
 open Show ⦃...⦄ public
 
 

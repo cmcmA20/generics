@@ -2,3 +2,4 @@ name: generics
 include: src
 depend:
   standard-library
+  kl-prelude

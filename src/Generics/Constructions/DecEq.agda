@@ -19,9 +19,7 @@ open import Relation.Nullary
 open import Relation.Binary using (DecidableEquality)
 open import Relation.Nullary.Decidable
 
-record DecEq {l} (A : Set l) : Set l where
-  field _≟_ : DecidableEquality A
-
+open import KL.DecEq public
 open DecEq ⦃...⦄ public
 
 module _ {P I ℓ}
